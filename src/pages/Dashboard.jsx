@@ -8,6 +8,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import SmartContractsSection from "./SmartContractsSection";
+import AIAnalyticsSection from "./AIAnalyticsSection";
+import MLAlgorithmsSection from "./MLAlgorithmsSection";
+import NLPSection from "./NLPSection";
 
 const features = [
   "Affiliate Marketing",
@@ -17,6 +21,10 @@ const features = [
   "Online Courses/Webinars",
   "Royalties",
   "Automated Investments",
+  "Smart Contracts",
+  "AI Analytics",
+  "ML Algorithms",
+  "NLP",
 ];
 
 const Dashboard = () => {
@@ -26,9 +34,9 @@ const Dashboard = () => {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Dashboard</h1>
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-        <TabsList>
+        <TabsList className="flex flex-wrap">
           {features.map((feature) => (
-            <TabsTrigger key={feature} value={feature}>
+            <TabsTrigger key={feature} value={feature} className="mr-2 mb-2">
               {feature}
             </TabsTrigger>
           ))}
@@ -43,10 +51,22 @@ const Dashboard = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="mb-4">
-                  This is a placeholder for the {feature} feature. Detailed functionality will be implemented in future updates.
-                </p>
-                <Button>Configure {feature}</Button>
+                {feature === "Smart Contracts" ? (
+                  <SmartContractsSection />
+                ) : feature === "AI Analytics" ? (
+                  <AIAnalyticsSection />
+                ) : feature === "ML Algorithms" ? (
+                  <MLAlgorithmsSection />
+                ) : feature === "NLP" ? (
+                  <NLPSection />
+                ) : (
+                  <>
+                    <p className="mb-4">
+                      This is a placeholder for the {feature} feature. Detailed functionality will be implemented in future updates.
+                    </p>
+                    <Button>Configure {feature}</Button>
+                  </>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
